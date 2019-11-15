@@ -8,9 +8,13 @@ jobs:
       - checkout
 
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: install
+          command: npm i
 
       - run:
-          name: Print the Current Time
-          command: date
+          name: run tests
+          command: echo run test
+
+      - run:
+          name: run lint
+          command: echo run lint
