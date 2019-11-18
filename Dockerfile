@@ -1,18 +1,12 @@
-# base image
-FROM node:12.2.0-alpine
-
-LABEL app="hello-react"
-
-# set working directory
-WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install and cache app dependencies
-COPY package.json /app/package.json
+FROM node:8 as react-build
+WORKDIR /src
+COPY . ./
 RUN npm install
-#RUN npm install react-scripts@3.0.1 -g --silent
+RUN npm build
 
-# start app
-CMD ["npm", "start"]
+FROM nginx:alpine
+COPY /public /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+

@@ -4,6 +4,7 @@
   "description": "Simple React Hello World",
   "main": "index.js",
   "scripts": {
+    "build": "browserify -t babelify --outfile public/generated-app.js src/hello.jsx && echo 'Build finished: /public'",
     "start": "browserify -t babelify --outfile public/generated-app.js src/hello.jsx && echo 'Open http://localhost:8000/ in your browser' && (cd public ; python -m SimpleHTTPServer)",
     "watch": "watchify -v -t babelify --outfile public/generated-app.js src/hello.jsx"
   },
